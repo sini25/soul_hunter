@@ -1,0 +1,16 @@
+{
+  "name": "soul-hunter-slot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Reaper's Fortune browser game",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "cd scripts/tests && node --test",
+    "check:rtp": "node scripts/check-rtp.cjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

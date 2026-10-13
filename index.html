@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>사신의 행운 — 데모</title>
+<link rel="icon" type="image/png" href="public/assets/gems/crown.png" />
+<link rel="stylesheet" href="src/css/reapers-fortune.css" />
+<link rel="stylesheet" href="src/css/responsive.css" />
+<link rel="stylesheet" href="src/css/auto-history.css" />
+<link rel="stylesheet" href="src/css/ruby-frame.css" />
+<link rel="stylesheet" href="src/css/deck-frame.css" />
+<link rel="stylesheet" href="src/css/help-frame.css" />
+<script defer src="src/js/config.js"></script>
+<script defer src="shared/js/paylines.js"></script>
+<script defer src="src/js/i18n.js"></script>
+<script defer src="shared/js/audio.js"></script>
+<script defer src="shared/js/slot-engine.js"></script>
+<script defer src="src/js/effects.js"></script>
+<script defer src="src/js/auto-history.js"></script>
+<script defer src="src/js/game.js"></script>
+</head>
+<body>
+<div class="game" id="game">
+  <button type="button" class="audioPrompt" id="audioPrompt">♫ 음악 시작</button>
+  <!-- “Fright Night” by Michael Ramir C. — Mixkit Stock Music Free License -->
+  <audio id="backgroundMusic" src="public/assets/audio/fright-night.mp3" preload="auto" loop></audio>
+  <!-- Original synthesized crystal-bell win cue -->
+  <audio id="winMusic" src="public/assets/audio/soul-harvest-win.wav" preload="auto"></audio>
+  <!-- Loss cue — Mixkit Stock Music/SFX Free License -->
+  <audio id="lossMusic" src="public/assets/audio/horror-lose.mp3" preload="auto"></audio>
+  <div class="rulesModal" id="rulesModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="rulesTitle">
+    <div class="rulesCard">
+      <button type="button" class="rulesClose" id="rulesClose" aria-label="규칙 닫기">×</button>
+      <div class="rulesModalHeader">
+        <div class="rulesKicker" id="rulesKicker">사신의 행운</div>
+        <h2 class="rulesTitle" id="rulesTitle">게임 규칙</h2>
+      </div>
+      <div class="rulesScroll" id="rulesScroll">
+        <p class="rulesIntro" id="rulesIntro"></p>
+        <div class="rulesGrid" id="rulesBody"></div>
+      </div>
+    </div>
+  </div>
+  <div class="backdropFx" id="backdropFx" aria-hidden="true"></div>
+  <div class="slotMachine">
+    <header class="slotHeader">
+      <div class="headerActions" aria-label="게임 메뉴" hidden></div>
+
+      <div class="wallet_freespin_container" hidden>
+        <div class="balancePlaque">
+          <div><span>잔액</span><b>₩100,000</b></div>
+        </div>
+      </div>
+    </header>
+
+    <main class="slotStage">
+      <section class="cabinet">
+
+      <div class="reelFrame" id="reelFrame">
+        <div class="reels" id="reels" aria-label="슬롯 릴"></div>
+        <div class="reelGlass" aria-hidden="true"></div>
+        <img class="reelFrameArt" src="public/assets/backgrounds/frame.png" width="1585" height="992" alt="" aria-hidden="true" draggable="false" fetchpriority="high">
+        <svg class="paylineFx" id="paylineFx" aria-hidden="true">
+          <defs>
+            <linearGradient id="paylineGradient" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#e8bd5d"/>
+              <stop offset=".48" stop-color="#fff"/>
+              <stop offset="1" stop-color="#7050ad"/>
+            </linearGradient>
+            <linearGradient id="paylineGold" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#963f63"/>
+              <stop offset=".5" stop-color="#fff3b0"/>
+              <stop offset="1" stop-color="#ffb62e"/>
+            </linearGradient>
+          </defs>
+          <g id="paylinePaths"></g>
+        </svg>
+        <div class="slash" id="slash"></div>
+        <div class="glassUtilityMenu" id="glassUtilityMenu" aria-hidden="true">
+          <button class="glassUtilityBtn" id="helpBtn" type="button" aria-label="도움말">?</button>
+          <button class="glassUtilityBtn active" id="soundBtn" type="button" aria-label="음악 켜짐" aria-pressed="true">♫</button>
+          <button class="glassUtilityBtn glassLanguageBtn" id="langBtn" type="button" aria-label="영어로 전환">EN</button>
+          <button class="glassUtilityBtn" id="glassHistoryBtn" type="button" aria-label="수확 기록" hidden></button>
+        </div>
+        <button class="glassMenuBtn menuBtn" id="controlMenuBtn" type="button" aria-label="메뉴" aria-controls="glassUtilityMenu" aria-expanded="false">
+          <svg class="glassMenuIcon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2.25"/><circle cx="12" cy="12" r="2.25"/><circle cx="12" cy="19" r="2.25"/></svg>
+        </button>
+        <button class="glassSideBtn glassTurboBtn" id="fastSpinBtn" type="button" aria-label="빠른 스핀" aria-pressed="false"><img class="glassControlIcon turboControlIcon" src="public/assets/ui/turbo-icon.png" alt=""></button>
+        <button class="glassSpinBtn" id="spinBtn" type="button" aria-keyshortcuts="Space" title="스페이스바: 3.25배 속도로 터보 스핀">
+          <img class="glassControlIcon spinControlIcon" src="public/assets/ui/spin-icon.png" alt="">
+          <span class="glassSpinLabelSr">스핀</span>
+        </button>
+        <button class="glassSideBtn glassAutoBtn" id="autoBtn" type="button"><img class="glassControlIcon autoControlIcon" src="public/assets/ui/auto-icon.png" alt=""></button>
+      </div>
+
+      <div class="fx" id="fx"></div>
+      <div class="resultPopup" id="resultPopup" role="status" aria-live="assertive" aria-atomic="true">
+        <div class="resultPopupCard">
+          <div class="resultSigil" id="resultSigil" aria-hidden="true">✦</div>
+          <span class="resultEyebrow" id="resultEyebrow">영혼 수확 성공</span>
+          <strong class="resultAmount" id="resultAmount">+0.00</strong>
+          <small class="resultDetail" id="resultDetail">당첨</small>
+        </div>
+      </div>
+      <div class="bigOverlay" id="bigOverlay"><div class="text">영혼 잭팟</div></div>
+      </section>
+
+      <div class="slotReadouts" aria-label="베팅 및 당첨 금액">
+        <button class="slotReadout slotBetReadout" id="glassBetBtn" type="button" aria-haspopup="dialog" aria-controls="betLimitsModal">
+          <span class="slotBetLabel">베팅 금액</span>
+          <b id="glassBetAmount">₩1,000</b>
+        </button>
+        <div class="slotReadout slotWinReadout" aria-live="polite">
+          <span class="slotWinLabel">당첨 금액</span>
+          <b id="glassWinAmount">0.00</b>
+        </div>
+        <div class="slotReadout slotBalanceReadout" aria-live="polite">
+          <span class="slotBalanceLabel">잔액</span>
+          <b id="balance">₩100,000</b>
+        </div>
+        <div class="slotReadout slotFreeSpinsReadout" id="freeSpinsReadout" role="status" aria-live="polite">
+          <span class="slotFreeSpinsLabel">무료 스핀</span>
+          <b id="freeSpins">0</b>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="controlDeck" hidden>
+      <div class="deckTrim" aria-hidden="true"><i class="deckTrimTop"></i><i class="deckTrimBottom"></i></div>
+      <div class="deckControls">
+      <button class="controlPlaque betPlaque" id="betBtn" type="button" aria-haspopup="dialog" aria-controls="betLimitsModal"><span>베팅</span><b id="currentBet">₩1,000</b></button>
+      <div class="winReadout"><span>당첨</span><b id="lastWin">0.00</b></div>
+      </div>
+    </footer>
+
+    <!-- <div class="footerNote">데모 전용 · 가상 크레딧 · 실제 운영 인증을 받은 도박 시스템이 아닙니다</div> -->
+  </div>
+</div>
+
+<div class="rulesModal betLimitsModal" id="betLimitsModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="betLimitsTitle">
+  <div class="rulesCard betLimitsCard">
+    <button type="button" class="rulesClose" id="betLimitsClose" aria-label="베팅 닫기">×</button>
+    <div class="rulesKicker" id="betLimitsKicker">사신의 행운</div>
+    <h2 class="rulesTitle" id="betLimitsTitle">베팅</h2>
+    <p class="rulesIntro" id="betLimitsPrompt">베팅 금액을 빠르게 선택하세요.</p>
+    <div class="betSelector betModalSelector" id="betSelector" aria-label="베팅 금액"></div>
+    <div class="betLimitActions">
+      <button id="minBetBtn" type="button">최소 베팅</button>
+      <button id="maxBetOptionBtn" type="button">최대 베팅</button>
+    </div>
+  </div>
+</div>
+
+<div class="ledgerModal" id="autoHistoryModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="ledgerTitle" aria-describedby="ledgerStatus">
+  <div class="ledgerCard" id="ledgerCard" data-tone="even">
+    <button class="ledgerClose" id="ledgerClose" type="button" aria-label="수확 기록 닫기">×</button>
+    <div class="ledgerCrest" aria-hidden="true">✦</div>
+    <div class="ledgerKicker" id="ledgerKicker">사신의 행운</div>
+    <h2 id="ledgerTitle">수확 기록</h2>
+    <p class="ledgerStatus" id="ledgerStatus" role="status"></p>
+    <nav class="ledgerNavigation" id="ledgerNavigation" hidden>
+      <button id="ledgerOlder" type="button" aria-label="이전 자동 기록">‹</button>
+      <span id="ledgerSession"></span>
+      <button id="ledgerNewer" type="button" aria-label="다음 자동 기록">›</button>
+    </nav>
+    <p class="ledgerEmpty" id="ledgerEmpty"></p>
+    <div id="ledgerBody" hidden>
+      <div class="ledgerHero"><span id="ledgerWonLabel"></span><strong id="ledgerTotalWon">0.00</strong><span class="ledgerNet" id="ledgerNet"></span></div>
+      <div class="ledgerStats">
+        <div><span id="ledgerBetLabel"></span><b id="ledgerTotalBet"></b></div>
+        <div><span id="ledgerSpinsLabel"></span><b id="ledgerSpins"></b></div>
+        <div><span id="ledgerBestLabel"></span><b id="ledgerBest"></b></div>
+      </div>
+      <div class="ledgerTableWrap" id="ledgerTableRegion" tabindex="0" role="region" aria-labelledby="ledgerTableTitle">
+        <table class="ledgerTable"><caption id="ledgerTableTitle"></caption>
+          <thead><tr><th id="ledgerSpinHeading" scope="col"></th><th id="ledgerBetHeading" scope="col"></th><th id="ledgerPaidHeading" scope="col"></th><th id="ledgerNetHeading" scope="col"></th></tr></thead>
+          <tbody id="ledgerRows"></tbody>
+        </table>
+      </div>
+      <p class="ledgerPending" id="ledgerPending" hidden></p>
+      <div class="ledgerBalance"><span id="ledgerBalanceLabel"></span><b id="ledgerBalance"></b></div>
+    </div>
+    <p class="ledgerNote" id="ledgerNote"></p>
+    <div class="ledgerActions"><button class="ledgerStop" id="ledgerStop" type="button" hidden></button><button class="ledgerDone" id="ledgerDone" type="button">게임으로 돌아가기</button></div>
+  </div>
+</div>
+</body>
+</html>

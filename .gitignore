@@ -1,0 +1,5 @@
+node_modules/
+scripts/local/
+__pycache__/
+*.pyc
+Reapers_Fortune_Game_Guide.docx

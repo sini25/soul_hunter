@@ -1,0 +1,275 @@
+/* Keep the supplied 1585 x 992 artwork and its five windows in one coordinate system. */
+.slotStage .reelFrame{
+  --glass-spin-size:clamp(88px,7vw,112px);--glass-side-size:clamp(60px,4.8vw,76px);--glass-control-offset:clamp(54px,calc(3.5vw + 10px),66px);--glass-menu-offset:clamp(38px,calc(2.4vw + 8px),46px);
+  --window-left:9.8423%; /* 156px */
+  --window-top:21.371%; /* 212px */
+  --window-width:80.3155%; /* 1273px */
+  --window-height:58.2661%; /* 578px */
+  width:100%;aspect-ratio:1585 / 992;margin:0 auto;padding:0;
+  border:0;border-radius:0;background:none;box-shadow:none;
+}
+.slotStage .reelFrame::before,.slotStage .reelFrame::after{display:none}
+.reelFrameArt{
+  position:absolute;z-index:9;inset:0;display:block;width:100%;height:100%;
+  pointer-events:none;user-select:none;
+}
+.reelFrame .reels,.reelFrame .reelGlass{
+  position:absolute;left:var(--window-left);top:var(--window-top);right:auto;bottom:auto;
+  width:var(--window-width);height:var(--window-height);
+}
+.reelFrame .reels{
+  /* The outer windows are slightly narrower than the three middle windows. */
+  grid-template-columns:minmax(0,232fr) minmax(0,242fr) minmax(0,240fr) minmax(0,242fr) minmax(0,234fr);
+  gap:1.63%;padding:0;border:0;border-radius:0;outline:0;background:none;box-shadow:none;
+  perspective:none;
+}
+.reelFrame .reel{
+  --reel-tilt:0deg;
+  min-height:0;grid-template-rows:repeat(3,minmax(0,1fr));padding:2% 3%;
+  border:0;border-radius:14% / 8%;
+  box-shadow:inset 0 0 22px rgba(0,0,0,.8);
+}
+.slotStage .reelFrame .cell{min-width:0;min-height:0;width:100%;height:100%;aspect-ratio:auto}
+.reelFrame .reelGlass{border-radius:4%;box-shadow:inset 0 12px 20px rgba(0,0,0,.28)}
+.glassSpinBtn,.glassSideBtn,.glassMenuBtn,.glassUtilityBtn{position:absolute;z-index:14;aspect-ratio:1;display:grid;place-items:center;padding:0;border:1px solid rgba(255,192,91,.86);border-radius:50%;overflow:hidden;cursor:pointer;color:#fff0c4;background:linear-gradient(145deg,rgba(134,20,58,.32),rgba(43,7,23,.44));-webkit-backdrop-filter:blur(12px) saturate(1.15);backdrop-filter:blur(12px) saturate(1.15);box-shadow:inset 0 1px 1px rgba(255,238,202,.5),inset 0 -8px 18px rgba(44,3,20,.44),0 7px 20px rgba(12,2,8,.56),0 0 11px rgba(255,48,83,.18);transition:transform .18s ease,filter .18s ease,box-shadow .18s ease,opacity .18s ease}.glassUtilityBtn[hidden],.glassUtilityMenu[hidden],.glassMenuBtn[hidden]{display:none!important}
+.glassSpinBtn{right:calc(-1 * var(--glass-spin-size) - 10px);top:50%;width:var(--glass-spin-size);transform:translateY(-50%)}.glassSideBtn{right:calc(-1 * var(--glass-side-size) - 28px);width:var(--glass-side-size);align-content:center;gap:1px;font:800 clamp(9px,.8vw,13px)/1 "Noto Sans KR","Malgun Gothic",sans-serif}.glassMenuBtn{left:calc(-1 * var(--glass-side-size) - 28px);top:50%;width:var(--glass-side-size);transform:translateY(-50%)}.glassControlIcon{position:relative;z-index:1;display:block;max-width:none;object-fit:contain;filter:drop-shadow(0 2px 3px rgba(43,3,17,.7))}.spinControlIcon{width:62%;height:62%}.turboControlIcon{width:84%;height:84%}.autoControlIcon{width:76%;height:76%;margin-top:3px}.glassSpinLabelSr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.glassAutoBtn{overflow:visible}.glassAutoBtn .autoLabel{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.glassSpinBtn::after,.glassSideBtn::after,.glassMenuBtn::after,.glassUtilityBtn::after{content:"";position:absolute;left:18%;right:18%;top:10%;height:30%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.3),transparent);pointer-events:none}.glassSpinIcon{position:relative;z-index:1;width:54%;height:54%;fill:none;stroke:currentColor;stroke-width:2.35;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 2px 3px rgba(38,2,14,.7))}.glassMenuIcon{position:relative;z-index:1;width:48%;height:62%;fill:currentColor}.glassUtilityMenu{position:absolute;z-index:14;left:calc(-1 * var(--glass-side-size) - 28px);bottom:calc(50% + var(--glass-menu-offset));display:grid;width:var(--glass-side-size);gap:8px;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(12px) scale(.94);transform-origin:center bottom;transition:opacity .2s ease,transform .2s ease,visibility 0s linear .2s}.glassUtilityMenu.open{opacity:1;visibility:visible;pointer-events:auto;transform:none;transition-delay:0s}.glassUtilityBtn{position:relative;width:100%;font:800 clamp(17px,1.45vw,23px)/1 Georgia,serif}.glassLanguageBtn{font:800 clamp(10px,.8vw,13px)/1 "Noto Sans KR","Malgun Gothic",sans-serif;letter-spacing:.03em}.glassTurboBtn{top:auto;bottom:calc(50% + var(--glass-control-offset))}.glassAutoBtn{top:calc(50% + var(--glass-control-offset));grid-template-rows:60% auto;gap:0}.glassAutoBtn .autoLabel,.glassAutoBtn .autoValue{position:relative;z-index:1}.glassAutoBtn .autoValue{color:#ffd365;font:800 clamp(13px,1vw,17px)/1 Georgia,serif}.glassSpinBtn:hover:not(:disabled),.glassSideBtn:hover:not(:disabled),.glassMenuBtn:hover:not(:disabled),.glassUtilityBtn:hover:not(:disabled){filter:brightness(1.13);box-shadow:inset 0 1px 1px rgba(255,245,218,.62),inset 0 -8px 18px rgba(78,5,32,.44),0 9px 24px rgba(15,2,9,.65),0 0 15px rgba(255,184,65,.24)}.glassSpinBtn:hover:not(:disabled),.glassMenuBtn:hover:not(:disabled){transform:translateY(-50%) scale(1.045)}.glassSideBtn:hover:not(:disabled),.glassUtilityBtn:hover:not(:disabled){transform:scale(1.045)}.glassSpinBtn:active:not(:disabled),.glassMenuBtn:active:not(:disabled){transform:translateY(-50%) scale(.95)}.glassSideBtn:active:not(:disabled),.glassUtilityBtn:active:not(:disabled){transform:scale(.95)}.glassSpinBtn:focus-visible,.glassSideBtn:focus-visible,.glassMenuBtn:focus-visible,.glassUtilityBtn:focus-visible{outline:3px solid #ffd66f;outline-offset:4px}.glassSpinBtn:disabled,.glassSideBtn:disabled,.glassMenuBtn:disabled,.glassUtilityBtn:disabled{cursor:default;opacity:.48;filter:saturate(.65)}.glassSideBtn.active,.glassMenuBtn.active,.glassUtilityBtn.active{color:#fff5cf;border-color:#ffd56d;background:linear-gradient(145deg,rgba(222,46,78,.45),rgba(151,35,78,.46));box-shadow:inset 0 1px 1px rgba(255,250,232,.66),0 0 17px rgba(255,55,93,.5),0 0 9px rgba(255,191,77,.28)}
+.glassMenuBtn{height:var(--glass-side-size)}
+.glassSpinBtn.freeSpinActive{overflow:visible;border:2px solid #ffcf53;background:radial-gradient(circle at 38% 22%,rgba(255,255,255,.28),transparent 16%),radial-gradient(circle at 50% 53%,#a80a32 0 46%,#540719 72%,#1c040c 100%);box-shadow:inset 0 0 0 3px #64091e,inset 0 0 0 5px rgba(255,122,51,.54),inset 0 0 22px rgba(255,218,111,.24),0 0 0 2px #75142a,0 0 15px rgba(255,68,62,.72),0 0 28px rgba(255,187,49,.38);animation:freeSpinButtonPulse 1.8s ease-in-out infinite}
+.glassSpinBtn.freeSpinActive::after{left:16%;right:16%;top:12%;height:26%;background:linear-gradient(180deg,rgba(255,255,255,.45),transparent)}
+.freeSpinOrbit{position:absolute;z-index:1;inset:-13%;display:grid;place-items:center;color:#ffe77d;font:900 calc(var(--glass-spin-size) * .9)/1 Georgia,serif;transform:rotate(-8deg);text-shadow:0 2px 0 #7e170f,0 0 8px #ff7c1b,0 0 16px rgba(255,217,76,.85);pointer-events:none}
+.freeSpinCount{position:relative;z-index:2;display:block;margin-top:-9%;color:#fff4b6;font:900 calc(var(--glass-spin-size) * .36)/1 Georgia,serif;text-shadow:0 2px 0 #721326,0 0 10px #ff8b25,0 0 18px rgba(255,220,91,.9)}
+@keyframes freeSpinButtonPulse{50%{filter:brightness(1.14);box-shadow:inset 0 0 0 3px #64091e,inset 0 0 0 5px rgba(255,185,68,.78),inset 0 0 28px rgba(255,229,120,.4),0 0 0 2px #75142a,0 0 21px rgba(255,68,62,.85),0 0 36px rgba(255,187,49,.52)}}
+.glassSideBtn.active,.glassMenuBtn.active,.glassUtilityBtn.active{background:linear-gradient(145deg,rgba(222,46,78,.34),rgba(151,35,78,.36))}
+.glassMenuBtn::before{display:none!important}
+/* The cabinet and its readouts must always occupy separate vertical tracks.
+   responsive.css changes the stage to flex on touch devices; without an
+   explicit direction its children become a horizontal row and collide with
+   the reel-side controls on wide, short screens. */
+.slotStage{flex-direction:column}
+.slotStage>.cabinet,.slotStage>.slotReadouts{grid-column:1 / -1}
+.slotReadouts{position:relative;z-index:15;display:grid;flex:0 0 auto;align-self:center;grid-template-columns:repeat(3,minmax(0,1fr));width:min(78%,720px);margin:-8px auto 0;gap:10px}
+.slotReadout{position:relative;isolation:isolate;min-width:0;padding:10px 18px;border:1px solid rgba(255,207,116,.72);border-radius:16px;text-align:center;background:linear-gradient(145deg,rgba(142,24,54,.16),rgba(45,7,23,.22));-webkit-backdrop-filter:blur(18px) saturate(1.3);backdrop-filter:blur(18px) saturate(1.3);box-shadow:inset 0 1px 0 rgba(255,241,210,.52),inset 0 -10px 22px rgba(42,3,17,.2),0 8px 24px rgba(10,2,7,.38)}
+.slotReadout::before{content:"";position:absolute;z-index:-1;left:8%;right:8%;top:8%;height:35%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.19),transparent);pointer-events:none}
+.slotBetReadout{appearance:none;font:inherit;cursor:pointer;transition:transform .18s ease,filter .18s ease,box-shadow .18s ease}
+.slotBetReadout:hover:not(:disabled){transform:translateY(-2px);filter:brightness(1.12);box-shadow:inset 0 1px 1px rgba(255,246,218,.58),inset 0 -9px 20px rgba(72,6,28,.46),0 10px 24px rgba(12,2,8,.62)}
+.slotBetReadout:active:not(:disabled){transform:translateY(0) scale(.98)}.slotBetReadout:focus-visible{outline:3px solid #ffd46d;outline-offset:3px}.slotBetReadout:disabled{cursor:default;opacity:.58}
+.slotReadout span{display:block;margin-bottom:3px;color:rgba(255,224,199,.86);font:800 clamp(9px,.7vw,12px)/1.1 "Noto Sans KR","Malgun Gothic",sans-serif;letter-spacing:.12em;text-transform:uppercase}.slotReadout b{display:block;overflow:hidden;color:#ffe2a0;font:900 clamp(18px,1.7vw,27px)/1.1 Georgia,"Times New Roman",serif;text-overflow:ellipsis;white-space:nowrap;text-shadow:0 2px 5px rgba(38,2,14,.88)}
+.slotWinReadout b{color:#ffd0a4}.slotFreeSpinsReadout{border-color:rgba(255,108,95,.86);background:radial-gradient(circle at 50% 0,rgba(255,43,75,.18),transparent 58%),linear-gradient(145deg,rgba(113,12,38,.34),rgba(31,5,17,.45))}.slotFreeSpinsReadout b{color:#ffd778;text-shadow:0 0 13px rgba(255,68,78,.58)}
+.slotBalanceReadout{border-color:rgba(255,196,92,.82);background:radial-gradient(circle at 50% 0,rgba(255,192,71,.14),transparent 58%),linear-gradient(145deg,rgba(103,27,33,.38),rgba(29,7,15,.48))}.slotBalanceReadout b{color:#ffe1a0;text-shadow:0 0 13px rgba(255,166,55,.38)}
+.slotFreeSpinsReadout{display:none!important}
+.slotStage .reelFrame.winPulse{animation:rubyFramePulse .7s ease}
+@keyframes rubyFramePulse{
+  50%{filter:drop-shadow(0 0 12px rgba(255,36,86,.55))}
+}
+
+/* Temporarily keep the character out of view without changing the stage layout. */
+.reaperStage .characterWrap{visibility:hidden}
+
+/* Let the skull crest remain fully visible beneath the localized title. */
+.slotStage .cabinetTitle{width:100%;padding:0 8px 6px;pointer-events:none}
+.slotStage .cabinetTitle .gameTitle{
+  font-family:"Noto Serif KR","Batang",Georgia,serif;
+  font-size:clamp(26px,3vw,46px);line-height:1.15;
+  background:linear-gradient(180deg,#fff4c2 0,#ffc35f 32%,#b85234 62%,#ffd77b 82%,#6b271a 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 2px 0 #2a0d0f);text-wrap:balance;
+}
+html[lang="en"] .slotStage .cabinetTitle .gameTitle{font-size:clamp(24px,2.65vw,42px)}
+
+/* Give the full-width artwork real gutters instead of overlapping its neighbours. */
+@media (min-width:1181px) and (pointer:fine), (min-width:1367px){
+  .slotMachine{
+    --fluid-layout:1;
+    --deck-width:min(1020px,calc(100vw - 40px),calc((100dvh - 100px) * 1.4));
+    --scene-reel-height:max(160px,calc(100dvh - var(--deck-width) * .239631 - 226px));
+    --character-width:clamp(210px,20vw,330px);
+    --ledger-width:clamp(168px,12vw,210px);
+    --stage-gap:clamp(10px,1.5vw,32px);
+    position:relative;left:auto;top:auto;transform:none;
+    width:min(100%,1920px);height:100dvh;min-height:0;margin:0 auto;
+    padding:10px 20px;grid-template-rows:repeat(4,auto);align-content:center;row-gap:8px;
+  }
+  .slotHeader{
+    width:100%;max-width:none;min-height:0;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"actions balance";
+  }
+  .headerActions{padding:6px;gap:8px}
+  .headerActions .iconBtn{width:44px;height:44px}
+  .balancePlaque{min-width:210px;min-height:60px;padding:6px 10px;grid-template-columns:42px 1fr}
+  .balancePlaque img{width:40px;height:40px}
+  .balancePlaque b{font-size:24px}
+  .slotStage{
+    position:relative;
+    width:min(100%,calc(var(--scene-reel-height) * 2.33744));
+    grid-template-columns:minmax(0,1fr);
+    gap:var(--stage-gap);
+  }
+  /* The character is an independent left-side layer, never part of the cabinet layout. */
+  .slotStage .reaperStage{
+    display:block;position:absolute;z-index:4;right:calc(100% + clamp(8px,1vw,24px));bottom:0;
+    width:clamp(190px,17vw,330px);height:min(64vh,650px);
+  }
+  .slotStage .reaperStage .characterWrap{visibility:visible}
+  .slotStage .cabinet{gap:3px}
+  .slotStage .cabinetTitle{padding:0 4px 2px}
+  .slotStage .cabinetTitle .gameTitle,
+  html[lang="en"] .slotStage .cabinetTitle .gameTitle{font-size:clamp(26px,2.2vw,38px);line-height:1.05}
+  .slotStage .paylineHint{padding:2px 4px;font-size:11px;line-height:1.25;letter-spacing:.02em}
+  .slotStage .message{min-height:0;padding:0 4px 2px}
+  .slotStage .message .main{font-size:18px;line-height:1.2}
+  .slotStage .message .sub{font-size:11px;line-height:1.2;margin-top:2px}
+  .reaperStage .characterWrap{
+    /* Leave room for the attack animation's forward step and rotation. */
+    inset:auto 12px 0 auto;width:calc(100% - 12px);max-width:100%;max-height:100%;
+    height:min(100%,700px);transform-origin:50% 90%;
+  }
+  .reaperStage .character{object-position:center bottom}
+  .slotStage .recentPanel{
+    position:absolute;left:calc(-1 * (var(--ledger-width) + var(--stage-gap)));top:50%;width:var(--ledger-width);min-width:0;
+    margin-left:0;transform:translateY(-50%);
+  }
+  .controlDeck{margin-top:0}
+}
+
+@media (max-width:1180px), (pointer:coarse) and (max-width:1366px){
+  .slotStage{padding-top:0}
+  .slotStage .reelFrame{width:min(100%,calc((100dvh - 340px)*1.6))}
+  .slotStage .cabinetTitle .gameTitle{font-size:clamp(23px,4vw,36px)}
+  html[lang="en"] .slotStage .cabinetTitle .gameTitle{font-size:clamp(21px,3.5vw,33px)}
+}
+@media (max-width:720px){
+  .slotMachine{padding-bottom:max(94px,calc(env(safe-area-inset-bottom) + 84px))}
+  .slotStage .reelFrame{width:min(100%,480px)}
+  .slotStage .reelFrame{--glass-spin-size:clamp(64px,18vw,78px);--glass-side-size:clamp(48px,13vw,56px);--glass-menu-offset:clamp(31px,calc(6.5vw + 7px),35px)}.glassSpinBtn{right:50%;top:auto;bottom:calc(-1 * var(--glass-spin-size) - 12px);transform:translateX(50%)}.glassSideBtn{top:auto;right:auto;bottom:-76px;transform:translateX(-50%)}.glassTurboBtn{left:calc(50% - 82px)}.glassAutoBtn{left:calc(50% + 82px)}.glassSpinBtn:hover:not(:disabled){transform:translateX(50%) scale(1.045)}.glassSpinBtn:active:not(:disabled){transform:translateX(50%) scale(.95)}.glassSideBtn:hover:not(:disabled){transform:translateX(-50%) scale(1.045)}.glassSideBtn:active:not(:disabled){transform:translateX(-50%) scale(.95)}.glassMenuBtn{left:calc(-1 * var(--glass-side-size) - 18px)}.glassUtilityMenu{left:calc(-1 * var(--glass-side-size) - 18px)}
+  .slotReadouts{position:absolute;left:50%;bottom:max(10px,env(safe-area-inset-bottom));width:min(92%,430px);margin:0;gap:7px;transform:translateX(-50%)}.slotReadout{padding:8px 10px;border-radius:13px}
+  .slotStage .cabinetTitle .gameTitle{font-size:clamp(21px,5.4vw,30px)}
+  html[lang="en"] .slotStage .cabinetTitle .gameTitle{font-size:clamp(18px,4.4vw,26px)}
+}
+@media (max-width:720px) and (max-height:700px) and (orientation:portrait){
+  .slotStage .reelFrame{width:min(100%,calc((100dvh - 340px)*1.6))}
+}
+@media (max-height:600px) and (orientation:landscape) and (max-width:1180px),
+       (max-height:600px) and (orientation:landscape) and (pointer:coarse) and (max-width:1366px){
+  .slotStage .reelFrame{width:min(100%,calc((100dvh - 140px)*1.6))}
+  .slotStage .cabinetTitle .gameTitle,
+  html[lang="en"] .slotStage .cabinetTitle .gameTitle{font-size:22px}
+}
+
+/* Responsive reel-side controls: maintain 44px touch targets and keep every
+   action within reach as the cabinet moves from desktop to tablet widths. */
+@media (min-width:1181px) and (pointer:fine), (min-width:1367px){
+  .slotStage .reelFrame{--glass-spin-size:clamp(88px,7vw,112px);--glass-side-size:clamp(60px,4.8vw,76px)}
+}
+@media (min-width:901px) and (max-width:1180px), (pointer:coarse) and (min-width:901px) and (max-width:1366px){
+  .slotStage .reelFrame{--glass-spin-size:clamp(76px,9vw,96px);--glass-side-size:clamp(52px,6vw,64px);--glass-control-offset:clamp(48px,4vw,58px)}
+  .glassSpinBtn,.glassSideBtn,.glassMenuBtn,.glassUtilityBtn{min-width:44px;min-height:44px}
+}
+@media (min-width:721px) and (max-width:900px){
+  .slotMachine{padding-bottom:max(100px,calc(env(safe-area-inset-bottom) + 90px))}
+  .slotStage .reelFrame{--glass-spin-size:clamp(72px,11vw,88px);--glass-side-size:clamp(50px,7vw,58px);--glass-menu-offset:36px}
+  .glassSpinBtn{right:50%;top:auto;bottom:calc(-1 * var(--glass-spin-size) - 14px);transform:translateX(50%)}
+  .glassSideBtn{top:auto;right:auto;bottom:calc(-1 * var(--glass-side-size) - 20px);transform:translateX(-50%)}
+  .glassTurboBtn{left:calc(50% - clamp(80px,12vw,100px))}
+  .glassAutoBtn{left:calc(50% + clamp(80px,12vw,100px))}
+  .glassSpinBtn:hover:not(:disabled){transform:translateX(50%) scale(1.045)}
+  .glassSpinBtn:active:not(:disabled){transform:translateX(50%) scale(.95)}
+  .glassSideBtn:hover:not(:disabled){transform:translateX(-50%) scale(1.045)}
+  .glassSideBtn:active:not(:disabled){transform:translateX(-50%) scale(.95)}
+  .glassMenuBtn{left:calc(-1 * var(--glass-side-size) - 18px)}
+  .glassUtilityMenu{left:calc(-1 * var(--glass-side-size) - 18px)}
+  .slotReadouts{position:absolute;left:50%;bottom:max(12px,env(safe-area-inset-bottom));width:min(88%,560px);margin:0;transform:translateX(-50%)}
+}
+@media (max-height:600px) and (orientation:landscape) and (max-width:1180px),
+       (max-height:600px) and (orientation:landscape) and (pointer:coarse) and (max-width:1366px){
+  .slotReadouts{
+    position:fixed;left:50%;bottom:max(10px,env(safe-area-inset-bottom));
+    width:min(86%,520px);margin:0;transform:translateX(-50%);
+  }
+}
+/* Some mobile emulators report a desktop-width viewport.  Height is the
+   reliable signal here: short landscape screens always stack the readouts. */
+@media (max-height:600px) and (orientation:landscape){
+  .slotReadouts{
+    position:fixed;left:50%;bottom:max(10px,env(safe-area-inset-bottom));
+    width:min(86%,520px);margin:0;transform:translateX(-50%);
+  }
+}
+@media (max-width:900px) and (orientation:portrait){
+  .slotReadouts{
+    bottom:max(clamp(110px,21dvh,190px),calc(env(safe-area-inset-bottom) + 10px));
+  }
+}
+
+/* On phone and tablet layouts, keep the utility toolbar detached above the
+   ornate frame. Secondary actions are smaller and reveal toward the right. */
+@media (max-width:1366px){
+  .glassMenuBtn{
+    left:8%;right:auto;top:-8px;bottom:auto;
+    transform:translate(-50%,-100%);
+  }
+  .glassMenuBtn:hover:not(:disabled){transform:translate(-50%,-100%) scale(1.045)}
+  .glassMenuBtn:active:not(:disabled){transform:translate(-50%,-100%) scale(.95)}
+  .glassUtilityMenu{
+    left:calc(8% + var(--glass-side-size) / 2 + 10px);right:auto;top:-8px;bottom:auto;
+    width:max-content;grid-auto-flow:column;grid-auto-columns:44px;align-items:end;
+    transform:translate(-8px,-100%) scale(.94);transform-origin:left bottom;
+  }
+  .glassUtilityMenu.open{transform:translateY(-100%)}
+  .glassUtilityBtn{width:44px;height:44px;min-width:44px;min-height:44px}
+}
+@media (min-width:721px) and (max-width:1366px){
+  .glassUtilityMenu{grid-auto-columns:48px}
+  .glassUtilityBtn{width:48px;height:48px;min-width:48px;min-height:48px}
+}
+
+/* Keep ordinary spin results away from the reels. The free-spin card retains
+   its dedicated left-side slide/dock positioning. */
+.resultPopup:not(.freeSpins){
+  position:fixed;left:auto;right:max(14px,env(safe-area-inset-right));top:auto;
+  bottom:max(14px,env(safe-area-inset-bottom));width:min(320px,calc(100vw - 28px));
+  transform:translateY(18px) scale(.76);
+}
+.resultPopup:not(.freeSpins) .resultPopupCard{
+  --result-glow:255,196,92;
+  min-height:0;padding:16px 54px 15px 20px;text-align:left;
+  border:1px solid rgba(var(--result-glow),.58);border-radius:18px;
+  background:
+    radial-gradient(circle at 82% 0,rgba(var(--result-glow),.16),transparent 45%),
+    linear-gradient(135deg,rgba(118,24,52,.58),rgba(42,8,25,.7) 58%,rgba(13,5,15,.78));
+  -webkit-backdrop-filter:blur(20px) saturate(1.35);backdrop-filter:blur(20px) saturate(1.35);
+  box-shadow:inset 0 1px 0 rgba(255,245,220,.28),inset 0 -16px 32px rgba(34,3,18,.2),0 14px 34px rgba(7,1,6,.46),0 0 18px rgba(var(--result-glow),.12);
+}
+.resultPopup:not(.freeSpins).loss .resultPopupCard{--result-glow:190,117,151;background:radial-gradient(circle at 82% 0,rgba(var(--result-glow),.13),transparent 45%),linear-gradient(135deg,rgba(79,27,51,.62),rgba(29,8,23,.76) 58%,rgba(10,5,13,.82))}
+.resultPopup:not(.freeSpins) .resultPopupCard::before{
+  content:"";left:8%;right:8%;top:1px;width:auto;height:38%;border:0;border-radius:50%;
+  background:linear-gradient(180deg,rgba(255,255,255,.2),transparent);box-shadow:none;transform:none;
+}
+.resultPopup:not(.freeSpins) .resultPopupCard::after{display:none}
+.resultPopup:not(.freeSpins) .resultSigil{position:absolute;right:18px;top:50%;font-size:25px;opacity:.86;transform:translateY(-50%)}
+.resultPopup:not(.freeSpins).win .resultPopupCard{padding:10px 18px 15px;text-align:center}
+.resultPopup:not(.freeSpins).win .resultSigil{
+  position:relative;right:auto;top:auto;width:min(200px,76%);height:auto;aspect-ratio:1769 / 864;
+  margin:-4px auto -2px;color:transparent;font-size:0;opacity:1;transform:none;
+  background:url('../../public/assets/ui/Regal Golden WIN Jackpot Emblem.png') center / contain no-repeat;
+  filter:drop-shadow(0 5px 10px rgba(51,3,10,.58));
+}
+.resultPopup:not(.freeSpins).loss .resultPopupCard{padding:10px 18px 15px;text-align:center}
+.resultPopup:not(.freeSpins).loss .resultSigil{
+  position:relative;right:auto;top:auto;width:min(200px,76%);height:auto;aspect-ratio:1769 / 864;
+  margin:-4px auto -2px;color:transparent;font-size:0;opacity:1;transform:none;
+  background:url('../../public/assets/ui/Cracked Crown LOSS Emblem.png') center / contain no-repeat;
+  filter:drop-shadow(0 5px 10px rgba(51,3,10,.62));
+}
+.resultPopup:not(.freeSpins) .resultEyebrow{margin:0;color:rgba(255,229,205,.82);font-size:9px;letter-spacing:.16em}
+.resultPopup:not(.freeSpins) .resultAmount{margin-top:7px;font-size:clamp(29px,3vw,40px);line-height:1;color:#ffe09a}
+.resultPopup:not(.freeSpins) .resultDetail{margin-top:6px;color:rgba(236,211,221,.7);font-size:9px;letter-spacing:.11em}
+.resultPopup:not(.freeSpins).show{animation:resultPopupCornerLife 1.25s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes resultPopupCornerLife{
+  0%{opacity:0;transform:translateY(18px) scale(.76);filter:blur(5px)}
+  16%,72%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+  100%{opacity:0;transform:translateY(10px) scale(.94);filter:blur(2px)}
+}
+@media (prefers-reduced-motion:reduce){
+  .resultPopup:not(.freeSpins).show{transform:none!important}
+}

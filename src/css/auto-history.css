@@ -1,0 +1,100 @@
+/* Gold filigree, amethyst glass, and rose accents from the reel cabinet. */
+.ledgerModal [hidden],.harvestPanel [hidden]{display:none!important}
+body.ledgerOpen{overflow:hidden}
+.ledgerModal{
+  position:fixed;z-index:100;inset:0;display:grid;place-items:center;
+  padding:max(16px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(16px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));
+  background:rgba(4,2,8,.62);backdrop-filter:blur(14px) saturate(125%);opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .2s ease,visibility .2s ease;
+}
+.ledgerModal.open{opacity:1;visibility:visible;pointer-events:auto}
+.ledgerCard{
+  position:relative;width:min(560px,100%);max-height:calc(100dvh - 40px);overflow:auto;overscroll-behavior:contain;
+  padding:24px 30px;border:1px solid rgba(255,219,171,.42);border-radius:22px;color:#f0e3f1;
+  background:linear-gradient(135deg,rgba(94,29,47,.78),rgba(37,10,22,.87) 55%,rgba(10,5,11,.92));
+  backdrop-filter:blur(22px) saturate(135%);-webkit-backdrop-filter:blur(22px) saturate(135%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.2),inset 0 0 36px rgba(218,54,89,.14),0 28px 100px rgba(0,0,0,.58),0 0 40px rgba(178,36,65,.2);
+  scrollbar-width:thin;scrollbar-color:#674857 #100b12;transform:translateY(10px);transition:transform .2s ease;
+}
+.ledgerModal.open .ledgerCard{transform:none}
+.ledgerCard::before{content:"";position:absolute;inset:1px;border:1px solid rgba(255,255,255,.1);border-radius:21px;background:linear-gradient(115deg,rgba(255,255,255,.12),transparent 25%,transparent 72%,rgba(226,158,255,.09));pointer-events:none}
+.ledgerCrest{text-align:center;color:#e8bd5d;font-size:27px;line-height:1.2;text-shadow:0 0 20px #b77cca80}
+.ledgerKicker{margin-top:8px;color:#b7a1bd;text-align:center;font-size:9px;letter-spacing:.2em}
+.ledgerCard h2,.harvestPanel h2{font-family:"Noto Serif KR","Batang",Georgia,serif;color:#efd29a;text-align:center;font-weight:700}
+.ledgerCard h2{font-size:clamp(27px,6vw,36px);line-height:1.2;margin:7px 28px}
+.ledgerStatus{font-size:12px;line-height:1.5;color:#beacc6;text-align:center;margin:6px 0 16px}
+.ledgerClose,.ledgerNavigation button{display:grid;place-items:center;min-width:44px;height:44px;border:1px solid #644635;border-radius:7px;background:#120d16;color:#e8bd5d;cursor:pointer;font:24px/1 Georgia,serif}
+.ledgerClose{position:absolute;right:13px;top:13px}
+.ledgerNavigation{display:flex;justify-content:space-between;align-items:center;gap:12px;border-top:1px solid #4c3447;border-bottom:1px solid #4c3447;padding:6px 0}
+.ledgerNavigation span{font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:#bb9dbe}
+.ledgerNavigation button{min-width:44px;height:36px;border-color:transparent;background:transparent}
+.ledgerModal button:disabled{opacity:.35;cursor:default}
+.ledgerHero{text-align:center;padding:20px 0 18px}
+.ledgerHero>span:first-child{display:block;color:#d0bdce;font-size:11px;letter-spacing:.13em;text-transform:uppercase}
+.ledgerHero>strong{display:block;margin:4px 0 10px;color:#e7d7ba;font:700 clamp(36px,9vw,54px)/1.15 Georgia,serif;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.ledgerCard[data-tone="profit"] .ledgerHero>strong{color:#ffe29a;text-shadow:0 0 24px #e8bd5d40}
+.ledgerNet{display:inline-block;border:1px solid #674653;border-radius:20px;background:#0c0910;padding:6px 14px;font-size:12px;font-variant-numeric:tabular-nums}
+.ledgerModal [data-tone="profit"],.harvestPanel [data-tone="profit"]{color:#efcb7b}
+.ledgerModal [data-tone="loss"],.harvestPanel [data-tone="loss"]{color:#d39bab}
+.ledgerModal [data-tone="even"],.harvestPanel [data-tone="even"]{color:#c6b6cf}
+.ledgerStats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid #4b3245;border-radius:8px;background:#100b1490;overflow:hidden}
+.ledgerStats>div{text-align:center;padding:12px 5px;min-width:0}
+.ledgerStats>div+div{border-left:1px solid #4b3245}
+.ledgerStats span{display:block;color:#b8a2bb;font-size:10px;line-height:1.4}
+.ledgerStats b{display:block;margin-top:5px;font:600 18px/1.2 Georgia,serif;color:#e9dce9;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.ledgerTableWrap{max-height:236px;overflow:auto;margin-top:18px;scrollbar-width:thin;scrollbar-color:#674857 #100b12;overscroll-behavior:contain}
+.ledgerTable{width:100%;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums}
+.ledgerTable caption{text-align:left;padding:0 0 9px;color:#c8b1ce;font-size:10px;text-transform:uppercase;letter-spacing:.12em}
+.ledgerTable th,.ledgerTable td{text-align:right;padding:9px 8px;border-bottom:1px solid #382736;white-space:nowrap}
+.ledgerTable th:first-child{text-align:left;color:#a48aac;font-weight:500}
+.ledgerTable thead th{position:sticky;top:0;background:#211522;color:#c6afbf;font-size:10px;font-weight:500;z-index:1}
+.ledgerTable td small{display:block;font-size:9px;color:#9b819f;margin-top:2px}
+.ledgerTable tbody tr:last-child>*{border-bottom:0}
+.ledgerPending{padding:10px;border:1px dashed #56405d;border-radius:6px;color:#b49bbb;font-size:11px;text-align:center}
+.ledgerBalance{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;border-top:1px solid #4c3447;margin-top:12px;padding-top:13px;font-size:10px;color:#b8a0bd}
+.ledgerBalance b{font-weight:500;color:#d7c5db;font-variant-numeric:tabular-nums}
+.ledgerNote{color:#a08ba7;font-size:10px;line-height:1.6;text-align:center;margin:14px 0}
+.ledgerEmpty,.ledgerLiveEmpty{color:#b59cba;font-size:12px;line-height:1.7;text-align:center;padding:18px 4px}
+.ledgerActions{display:flex;gap:10px}
+.ledgerActions button{flex:1;min-height:44px;padding:10px 12px;border-radius:8px;font-size:12px;cursor:pointer}
+.ledgerDone{border:1px solid #a77d4e;color:#f1d6a0;background:linear-gradient(180deg,#3e2930,#1b111e);box-shadow:inset 0 0 0 2px #180d18}
+.ledgerStop{border:1px solid #9b506d;background:linear-gradient(180deg,#52253d,#261423);color:#edbed0}
+.ledgerActions button:hover:not(:disabled),.ledgerClose:hover{filter:brightness(1.2)}
+.harvestPanel{padding:16px 10px}
+.harvestPanel h2{font-size:17px;line-height:1.2;margin:8px 0}
+.harvestPanel .ledgerCrest{font-size:23px}
+.ledgerLiveStatus{font-size:9px;line-height:1.5;color:#b69cbc;text-align:center;margin:8px 0 12px}
+.ledgerLiveTotals{text-align:center;border-top:1px solid #523344;border-bottom:1px solid #523344;padding:13px 0}
+.ledgerLiveTotals>span{font-size:9px;color:#bba4be}
+.ledgerLiveTotals strong{display:block;margin:5px 0;color:#efd29a;font:700 23px/1.1 Georgia,serif;overflow-wrap:anywhere}
+.ledgerLiveTotals small{font-size:9px;line-height:1.5}
+.ledgerLiveRows{list-style:none;padding:0;margin:4px 0 10px;font-size:10px}
+.ledgerLiveRows li{display:flex;justify-content:space-between;align-items:center;gap:6px;padding:10px 2px;border-bottom:1px solid #352232}
+.ledgerLiveRows span{color:#b6a0bb}.ledgerLiveRows small{display:block;margin-top:3px;font-size:9px;color:#866b93}
+.ledgerLiveRows b{font:600 13px Georgia,serif}
+.ledgerLink{width:100%;min-height:36px;border:1px solid #745139;border-radius:6px;background:#20131f;color:#d9b678;font-size:10px;cursor:pointer}
+@media(max-width:600px){
+  .ledgerModal{padding:12px}
+  .ledgerCard{padding:20px 16px;max-height:calc(100dvh - 24px);border-radius:13px}
+  .ledgerHero{padding:16px 0}.ledgerTableWrap{max-height:210px}
+  .ledgerCard h2{margin-left:38px;margin-right:38px;font-size:28px}
+  .ledgerTable th,.ledgerTable td{padding:9px 5px;font-size:11px}
+  .ledgerStats b{font-size:16px}
+}
+@media(max-width:360px){
+  .ledgerCard h2{font-size:24px;margin:7px 20px}
+}
+@media(max-height:600px){
+  .ledgerCard{padding-top:14px;padding-bottom:14px}
+  .ledgerCard>.ledgerCrest,.ledgerCard>.ledgerKicker{display:none}
+  .ledgerCard h2{font-size:25px;margin:3px 42px 5px}
+  .ledgerStatus{font-size:11px;margin:4px 0 8px}
+  .ledgerNavigation{padding:0}
+  .ledgerHero{padding:10px 0}
+  .ledgerHero>strong{font-size:34px;margin:3px 0 6px}
+  .ledgerNet{padding:4px 10px;font-size:11px}
+  .ledgerStats>div{padding:8px 4px}
+  .ledgerStats b{font-size:16px;margin-top:3px}
+  .ledgerTableWrap{margin-top:12px}
+}
+@media(prefers-reduced-motion:reduce){.ledgerModal,.ledgerCard{transition:none}}
